@@ -1,0 +1,37 @@
+.warning-box {
+    font-size: 18px; 
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.c-centered-title {
+    border-bottom: 3px solid blue; 
+    margin: 10px 0; 
+    text-align: center;
+    font-size: 20px;
+}
+
+.c-bordered-top {
+    border-top: 1px solid #000;
+    padding-top: 2px;
+}
+
+.c-bordered-top-p6 {
+    border-top: 2px solid #000;
+    padding-top: 6px;
+}
+
+.c-blue-text {
+    color: blue;
+}
+
+.c-brown-box {
+    background-color: dodgerblue!important;
+    color: white;
+    font-weight: bold;
+    font-size: 16px!important;
+}
+
+.c-bolder {
+    font-weight: bolder!important;
+}
