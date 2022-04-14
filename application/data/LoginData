@@ -1,0 +1,28 @@
+<?php
+
+include('../../config/DBConfig.php');
+
+/**********************************************************
+ * MADE UNDER THE CONTROL OF:
+ * @Donnekt and @Gadrawingz::
+ * *******************************************************/
+
+class LoginData extends DBConfig {
+
+	public function __construct() {
+		$obj = new DBConfig;
+		$this->con= $obj->connect();
+	}
+	
+	public function doAdminLogin($email, $pass) {
+        $sql= "SELECT * FROM `admin` WHERE email='$email' AND password='$pass' ";
+        $stmt= $this->con->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+
+
+   
+}
+
+?>
