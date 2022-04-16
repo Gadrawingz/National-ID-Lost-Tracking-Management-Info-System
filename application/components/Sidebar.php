@@ -6,73 +6,95 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="profile.html"><img src="../assets/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Sam Soffes</h5>
+
+          <?php if(isset($_SESSION['admin_id'])) { ?>
+          <h5 class="centered">Admin</h5>
+          
           <li class="mt">
-            <a class="active" href="index.html">
+            <a class="active" href="../main/dashboard">
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
               </a>
           </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-desktop"></i>
-              <span>UI Elements</span>
-              </a>
-            <ul class="sub">
-              <li><a href="general.html">General</a></li>
-              <li><a href="buttons.html">Buttons</a></li>
-              <li><a href="panels.html">Panels</a></li>
-              <li><a href="font_awesome.html">Font Awesome</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-cogs"></i>
-              <span>Components</span>
-              </a>
-            <ul class="sub">
-              <li><a href="grids.html">Grids</a></li>
-              <li><a href="calendar.html">Calendar</a></li>
-              <li><a href="gallery.html">Gallery</a></li>
-              <li><a href="todo_list.html">Todo List</a></li>
-              <li><a href="dropzone.html">Dropzone File Upload</a></li>
-              <li><a href="inline_editor.html">Inline Editor</a></li>
-              <li><a href="file_upload.html">Multiple File Upload</a></li>
-            </ul>
-          </li>
-         
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-tasks"></i>
-              <span>Forms</span>
-              </a>
-            <ul class="sub">
-              <li><a href="form_component.html">Form Components</a></li>
-              <li><a href="advanced_form_components.html">Advanced Components</a></li>
-              <li><a href="form_validation.html">Form Validation</a></li>
-              <li><a href="contactform.html">Contact Form</a></li>
-            </ul>
-          </li>
-        
+          
           <li>
-            <a href="#">
+            <a href="../police/register">
               <i class="fa fa-envelope"></i>
-              <span>Mail </span>
-              <span class="label label-theme pull-right mail-info">2</span>
+              <span>Add Police station </span>
+            </a>
+          </li>
+
+          <li>
+            <a href="../police/view">
+              <i class="fa fa-envelope"></i>
+              <span>Manage All stations </span>
+            </a>
+          </li><hr>
+
+          <li>
+            <a href="../report/lost">
+              <i class="fa fa-question-circle"></i>
+              <span>Report of Lost IDs</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="../report/found">
+              <i class="fa fa-credit-card"></i>
+              <span>Report of Found IDs</span>
+            </a>
+          </li><hr>
+
+          <li>
+            <a class="c-bolder" href="../ids/search">
+              <i class="fa fa-search"></i>
+              <span>Search for an ID</span>
               </a>
           </li>
 
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-th"></i>
-              <span>Data Tables</span>
+          <?php } if(isset($_SESSION['ps_id'])) { ?>
+          <h5 class="centered">Police Station User</h5>
+          <h6 class="centered">(<?php echo $_SESSION['ps_name']; ?>)</h6><hr>
+          
+          <li class="mt">
+            <a class="active c-bolder" href="../main/dashboard">
+              <i class="fa fa-home"></i>
+              <span>Dashboard</span>
               </a>
-            <ul class="sub">
-              <li><a href="basic_table.html">Basic Table</a></li>
-              <li><a href="responsive_table.html">Responsive Table</a></li>
-              <li><a href="advanced_table.html">Advanced Table</a></li>
-            </ul>
+          </li><br>
+
+          <li>
+            <a href="../ids/lost">
+              <i class="fa fa-list-alt"></i>
+              <span>Manage Lost IDs</span>
+              <span class="label label-theme pull-right mail-info">
+                <?php echo $id_query->countAllFoundIDs(); ?>
+              </span>
+            </a>
           </li>
+
+          <li>
+            <a href="../ids/found">
+              <i class="fa fa-list-alt"></i>
+              <span>Manage Found IDs</span>
+              <span class="label label-theme pull-right mail-info">
+                <?php echo $id_query->countAllLostIDs(); ?>
+              </span>
+            </a>
+          </li><hr>
+
+          <li>
+            <a class="c-bolder" href="../ids/search">
+              <i class="fa fa-search"></i>
+              <span>Search for an ID</span>
+              </a>
+          </li>
+          <?php } ?>
+
+
+
+
+
 
         </ul>
         <!-- sidebar menu end-->
@@ -80,3 +102,9 @@
     </aside>
 
     <!-- Sidebar end-->
+
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper">
+        <!-- @gadrawingz row sittin f****in here -->      
+        <div class="row">

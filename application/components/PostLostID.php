@@ -1,6 +1,4 @@
-        <!-- row -->
-        <!--ADVANCED FILE INPUT-->
-        <div class="row">
+        <!-- INSIDE ABOVE ROW -->
           <div class="col-lg-12">
             <h4 style="margin-left: 10px;">Ads all information of ID you lost</h4>
             <div class="form-panel">
@@ -138,5 +136,3 @@
             <!-- /form-panel -->
           </div>
           <!-- /col-lg-12 -->
-        </div>
-        <!-- row -->

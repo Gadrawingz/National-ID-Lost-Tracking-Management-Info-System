@@ -1,132 +1,78 @@
-<?php
-// AVOID DIRECT ACCESS PAGE WITHOUT PERMISSION HAHA GAD WEE!
-if(!isset($_SESSION['admin_id'])) {
-  // echo "<script>window.location='../main/login'</script>";
-  header("Location:../main/login");
-}
-?>
-
-  <!--main content start-->
-    <section id="main-content">
-      <section class="wrapper">
-        <div class="row">
-          
+      <?php
+      /************************************
+       *:: CODING HAND:@gadrawingz/@donnekt
+       ************************************/
+      ?>
+      
+          <!-- Inside row defined above all of the app power @donnekt -->
           <div class="col-lg-9 main-chart">
-            
+            <!--CUSTOM CHART START -->
             <div class="border-head">
               <h3>DASHBOARD</h3>
             </div>
 
             <div class="row">
-              <!-- DIRECT MESSAGE PANEL -->
-              <div class="col-md-12 mb">
-                <div class="message-p pn">
-                  <div class="message-header">
-                    <h5>DIRECT MESSAGE</h5>
+              <!-- col-md-4 -->
+              <div class="col-md-4 col-sm-4 mb">
+                <div class="green-panel pn">
+                  <div class="green-header">
+                    <h5>LOST ID CARDS</h5>
                   </div>
+                  <canvas id="serverstatus01" height="120" width="120"></canvas>
+                  <script>
+                    var doughnutData = [{
+                        value: 70,
+                        color: "#CC3B9B"
+                      },
+                      {
+                        value: 30,
+                        color: "#DEFFBB"
+                      }
+                    ];
+                    var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
+                  </script>
+                  <h3><?php echo $id_query->countAllLostIDs(); ?> ID(s)</h3>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb">
+                <!-- WHITE PANEL - TOP USER -->
+                <div class="white-panel pn">
+                  <div class="white-header">
+                    <h5>More statistics</h5>
+                  </div><hr>
                   <div class="row">
-                    <div class="col-md-3 centered hidden-sm hidden-xs">
-                      <img src="../assets/img/ui-danro.jpg" class="img-circle" width="65">
+                    <?php if(isset($_SESSION['admin_id'])) { ?>
+                    <div class="col-md-12">
+                      <p class="mt c-bolder">Total police stations</p>
+                      <p><h1>(<?php echo $police->countPoliceStations(); ?>)</h1></p>
                     </div>
-                    <div class="col-md-9">
-                      <p>
-                        <name>Dan Rogers</name>
-                        sent you a message.
-                      </p>
-                      <p class="small">3 hours ago</p>
-                      <p class="message">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                      <form class="form-inline" role="form">
-                        <div class="form-group">
-                          <input type="text" class="form-control" id="exampleInputText" placeholder="Reply Dan">
-                        </div>
-                        <button type="submit" class="btn btn-default">Send</button>
-                      </form>
-                    </div>
+                    <?php } ?>
                   </div>
                 </div>
               </div>
-              <!-- /col-md-8  -->
+              <!-- col-md-4 -->
+              <div class="col-md-4 col-sm-4 mb">
+                <div class="green-panel pn">
+                  <div class="green-header">
+                    <h5>FOUND ID CARDS</h5>
+                  </div>
+                  <canvas id="serverstatus02" height="120" width="120"></canvas>
+                  <script>
+                    var secondData = [{
+                        value: 70,
+                        color: "#EECCBB"
+                      },
+                      {
+                        value: 30,
+                        color: "#CCA666"
+                      }
+                    ];
+                    var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(secondData);
+                  </script>
+                  <h3><?php echo $id_query->countAllFoundIDs(); ?> ID(s)</h3>
+                </div>
+              </div>
             </div>
-
           </div>
           <!-- /col-lg-9 END SECTION MIDDLE -->
-
-          <!-- RIGHT SIDEBAR CONTENT -->
-          <div class="col-lg-3 ds">
-
-            <!-- RECENT ACTIVITIES SECTION -->
-            <h4 class="centered mt">RECENT ACTIVITY</h4>
-            <!-- First Activity -->
-            <div class="desc">
-              <div class="thumb">
-                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-              </div>
-              <div class="details">
-                <p>
-                  <muted>Just Now</muted>
-                  <br/>
-                  <a href="#">Paul Rudd</a> purchased an item.<br/>
-                </p>
-              </div>
-            </div>
-            <!-- Second Activity -->
-            <div class="desc">
-              <div class="thumb">
-                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-              </div>
-              <div class="details">
-                <p>
-                  <muted>2 Minutes Ago</muted>
-                  <br/>
-                  <a href="#">James Brown</a> subscribed to your newsletter.<br/>
-                </p>
-              </div>
-            </div>
-            <!-- Third Activity -->
-            <div class="desc">
-              <div class="thumb">
-                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-              </div>
-              <div class="details">
-                <p>
-                  <muted>3 Hours Ago</muted>
-                  <br/>
-                  <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
-                </p>
-              </div>
-            </div>
-            <!-- Fourth Activity -->
-            <div class="desc">
-              <div class="thumb">
-                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-              </div>
-              <div class="details">
-                <p>
-                  <muted>7 Hours Ago</muted>
-                  <br/>
-                  <a href="#">Brando Page</a> purchased a year subscription.<br/>
-                </p>
-              </div>
-            </div>
-            
-            <!-- CALENDAR-->
-            <div id="calendar" class="mb">
-              <div class="panel green-panel no-margin">
-                <div class="panel-body">
-                  <div id="date-popover" class="popover top" style="cursor: pointer; disadding: block; margin-left: 33%; margin-top: -50px; width: 175px;">
-                    <div class="arrow"></div>
-                    <h3 class="popover-title" style="disadding: none;"></h3>
-                    <div id="date-popover-content" class="popover-content"></div>
-                  </div>
-                  <div id="my-calendar"></div>
-                </div>
-              </div>
-            </div>
-            <!-- / calendar -->
-          </div>
-          <!-- /col-lg-3 -->
-        </div>
-        <!-- /row -->
-      </section>
-    </section>
-    <!--main content end-->

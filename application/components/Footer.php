@@ -1,4 +1,9 @@
-<!--footer start-->
+        </div><!-- End that f****kin row --> 
+      </section>
+    </section>
+    <!--main content end-->
+    
+    <!--footer start-->
     <footer class="site-footer">
       <div class="text-center">
         <p>

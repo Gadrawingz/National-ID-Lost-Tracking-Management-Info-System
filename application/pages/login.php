@@ -1,12 +1,13 @@
 <?php
+
+/**********************************
+ * CODING HAND:@gadrawingz/@donnekt
+ * ********************************/
+
 // Calling top scripts
 session_start();
 include '../../config/AppConfig.php';
 $fun = new AppConfig;
-
-/**********************************
- * USAGE: (ACCESS ME EVERYWHERE)
- * ********************************/
 
 include '../components/Login.php';
 $object = new Login();
@@ -40,53 +41,73 @@ $object = new Login();
 <body>
   <div id="login-page">
     <div class="container">
+      
       <?php
-      if(isset($_POST['login_'])) {
-        $object->adminLogin($_POST['email'], $_POST['password']);
-      }
+      if(isset($_GET['type']) && $_GET['type']=='admin') {
+        if(isset($_POST['login_'])) {
+          $object->adminLogin($_POST['email'], $_POST['password']);
+        }
       ?>
       <form class="form-login" action="" method="POST">
         <?php if(isset($_GET['err']) && $_GET['err']=='invalid') {
           echo '<br><center><span class="text-danger" style="font-size: 15px; font-weight: bold; margin: 12px!important;">Invalid details are provided!</span></center><br>';
         }
         ?>
-        <h2 class="form-login-heading" style="color: white!important; font-size: 25px; font-weight: bold;">sign in now</h2>
+        <h2 class="form-login-heading" style="color: white!important; font-size: 25px; font-weight: bold;">Admin Login</h2>
         <div class="login-wrap">
+
           <input type="email" class="form-control" placeholder="Email address" name="email" required autofocus>
           <br>
           <input type="password" class="form-control" placeholder="Password" name="password" required autofocus>
           <br>
-          <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
-          <hr>
+          <button class="btn btn-theme btn-block" type="submit" name="login_"><i class="fa fa-lock"></i> SIGN IN</button>
+          <hr><br>
          
           <div class="registration">
-            Any sign-in problem? Use below link<br/>
-            <a class="" href="#">
-              Create an account
-              </a>
+            <a class="font-size-17 underlined-bottom" href="../police/login">
+              Police Station Login
+            </a>
           </div>
         </div>
-        <!-- Modal -->
-        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Forgot Password?</h4>
-              </div>
-              <div class="modal-body">
-                <p>Enter your e-mail address below to reset your password.</p>
-                <input type="text" name="reset_email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
-              </div>
-              <div class="modal-footer">
-                <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                <input class="btn btn-theme" name="login_">Login</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- modal -->
       </form>
+      <?php } ?>
+
+
+
+
+      <?php
+      if(isset($_GET['type']) && $_GET['type']=='police') {
+        if(isset($_POST['login_p'])) {
+          $object->policeStationLogin($_POST['username'], $_POST['password']);
+        }
+      ?>
+      <form class="form-login" action="" method="POST">
+        <?php if(isset($_GET['err']) && $_GET['err']=='invalid') {
+          echo '<br><center><span class="text-danger" style="font-size: 15px; font-weight: bold; margin: 12px!important;">Invalid details are provided!</span></center><br>';
+        }
+        ?>
+        <h2 class="form-login-heading" style="color: white!important; font-size: 20px; font-weight: bold;">Police Station Login</h2>
+        <div class="login-wrap">
+          <label for="username" class="c-bolder">Use <u>station username</u> not <span class="text-danger">name</span></label>
+          <input type="text" class="form-control" id="username" placeholder="Username" name="username" required autofocus>
+          <br>
+          <label for="password" class="c-bolder">Password</label>
+          <input type="password" class="form-control" placeholder="Password" name="password" required autofocus>
+          <br>
+          <button class="btn btn-primary btn-block" type="submit" name="login_p"><i class="fa fa-lock"></i> SIGN IN</button>
+          <hr><br>
+         
+          <div class="registration">
+            <a class="font-size-17 underlined-bottom" href="../main/login">
+              Admin Login
+            </a>
+          </div>
+        </div>
+      </form>
+      <?php } ?>
+
+
+
     </div>
   </div>
   <!-- js placed at the end of the document so the pages load faster -->

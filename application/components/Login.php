@@ -1,5 +1,6 @@
 <?php
-include('../data/LoginData');
+include('../data/LoginData.php');
+//@gadrawingz @donnekt
 
 class Login{
 
@@ -17,17 +18,23 @@ class Login{
             $_SESSION['admin_names'] 	= $row['full_name'];
             echo "<script>window.location='../main/dashboard'</script>";
         } else {	
-			echo "<script>window.location='../main/login?err=invalid'</script>";
+			echo "<script>window.location='../log_err_a/invalid'</script>";
 		}
 	}
 
-	public function logoutUser($user_session) {
-		if(isset($user_session) && $user_session=='admin_id') {
-			unset($user_session);
-			session_destroy();
-			echo "<script>window.location='../main/login'</script>";
-		} else {	
-			echo "<script>window.location='../main/dashboard'</script>";
+	public function policeStationLogin($username, $password) {
+		error_reporting(0);
+		$call = new LoginData;
+		$stmt = $call->doPSLogin($username, $password);
+		$row  = $stmt->FETCH(PDO::FETCH_ASSOC);
+
+		if(($username==$row['username']) && ($password==$row['password'])) {
+			$_SESSION['ps_id']		= $row['station_id'];
+            $_SESSION['username'] 	= $row['username'];
+            $_SESSION['ps_name'] 	= $row['station_name'];
+            echo "<script>window.location='../main/dashboard'</script>";
+        } else {	
+			echo "<script>window.location='../log_err_p/invalid'</script>";
 		}
 	}
 

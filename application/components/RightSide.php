@@ -1,4 +1,4 @@
-
+          <!-- RIGHT SIDEBAR CONTENT -->
           <div class="col-lg-3 ds">
             <!-- RECENT ACTIVITIES SECTION -->
             <h4 class="centered mt">RECENT LOST NATIONAL IDs</h4>
@@ -25,4 +25,5 @@
               </div>
             </div>
             <?php } ?>
+          </div>
             

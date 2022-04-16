@@ -1,5 +1,9 @@
 <?php
 
+/**********************************
+ * CODING HAND:@gadrawingz/@donnekt
+ * ********************************/
+
 // Calling top scripts
 session_start();
 include '../../config/AppConfig.php';
@@ -64,7 +68,8 @@ $id_query = new IDAllData();
       ?>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout c-brown-box" href="../ids/search">Search for an ID</a></li>
+          <li><a class="logout c-transparent-like" href="../ids/search">Search for ID</a></li>
+          <li><a class="logout c-brown-box" href="../ids/search">Admin Login</a></li>
         </ul>
       </div>
       <?php } ?>
@@ -78,14 +83,9 @@ $id_query = new IDAllData();
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          
-          <li class="mt">
-            <a class="active c-bolder" href="../main/login">
-              <i class="fa fa-dashboard"></i>
-              <span>Login To System</span>
-              </a>
-          </li>
-        
+
+          <span class="c-title-sidebar">Visitors Page</span><hr>
+
           <li>
             <a href="../post/found">
               <i class="fa fa-pencil"></i>
@@ -104,9 +104,6 @@ $id_query = new IDAllData();
             <a href="../ids/found">
               <i class="fa fa-credit-card"></i>
               <span>View Found IDs </span>
-              <span class="label label-theme pull-right mail-info">
-                <?php echo $id_query->countAllFoundIDs(); ?>
-              </span>
             </a>
           </li>
 
@@ -114,13 +111,10 @@ $id_query = new IDAllData();
             <a href="../ids/lost">
               <i class="fa fa-question-circle"></i>
               <span>View Lost IDs </span>
-              <span class="label label-theme pull-right mail-info">
-                <?php echo $id_query->countAllLostIDs(); ?>
-              </span>
             </a>
           </li><hr>
 
-          <li class="bg-warning" style="color: white!important;">
+          <li>
             <a class="c-bolder" href="../ids/search">
               <i class="fa fa-search"></i>
               <span>Search for ID</span>
@@ -205,7 +199,7 @@ $id_query = new IDAllData();
             include '../components/RightSide.php';
           ?>
 
-          </div>
+          
           <!-- /col-lg-3 -->
         </div>
         <!-- /row -->

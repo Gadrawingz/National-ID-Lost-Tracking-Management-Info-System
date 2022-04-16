@@ -1,10 +1,11 @@
 <?php
 
-include('../../config/DBConfig.php');
+require_once('../../config/DBConfig.php');
 
 /**********************************************************
  * MADE UNDER THE CONTROL OF:
- * @Donnekt and @Gadrawingz::
+ * @donnekt and @gadrawingz
+ * Go to: https://www.donnekt.com
  * *******************************************************/
 
 class IDAllData extends DBConfig {
@@ -39,13 +40,16 @@ class IDAllData extends DBConfig {
         	return " Uploaded file is not image supported!";
 
         } else if($id_names=='' || $id_num=='' || $id_dob=='' || $id_sex=='' || $is_dist=='' || $is_sect=='' || $image_file=='' || $u_location=='' || $u_fn=='' || $u_ln=='' || $contact==''){
-        	return "Some fields are empty!";
-
+            return '<span class="c-white-red"> Some fields are empty!</span>';
+        	
         } else if(strlen($id_num)!=16){
-        	return "ID should have 16 numbers";
+            return '<span class="c-white-red">ID should have 16 numbers!</span>';
+
+        } else if(!preg_match("/^07[2,3,8,9]{1}\d{7}$/", $contact)) {
+            return '<span class="c-white-red"> Invalid Phone number</span>';
 
         } else if($idst->fetchColumn()!=0) {
-        	return "This National ID already posted!";
+            return '<span class="c-white-red">This National ID already posted!</span>';
 
         } else {
         	$uploadFilePath = '../../uploads/'.basename($file_name);
@@ -97,14 +101,17 @@ class IDAllData extends DBConfig {
         	return " Uploaded file is not image supported!";
 
         } else if($id_names=='' || $id_num=='' || $id_dob=='' || $id_sex=='' || $is_dist=='' || $is_sect=='' || $image_file=='' || $from=='' || $to=='' || $reward=='' || $contact==''){
-        	return "Some fields are empty!";
-
+        	return '<span class="c-white-red"> Some fields are empty!</span>';
+            
         } else if(strlen($id_num)!=16){
-        	return "ID should have 16 numbers";
+            return '<span class="c-white-red">ID should have 16 numbers!</span>';
 
         } else if($idst->fetchColumn()!=0) {
-        	return "This National ID already posted!";
+            return '<span class="c-white-red">This National ID already posted!</span>';
 
+        } else if(!preg_match("/^07[2,3,8,9]{1}\d{7}$/", $contact)) {
+            return '<span class="c-white-red"> Invalid Phone number</span>';
+            
         } else {
         	$uploadFilePath = '../../uploads/'.basename($file_name);
         	move_uploaded_file($file_temp, $uploadFilePath);
@@ -122,7 +129,14 @@ class IDAllData extends DBConfig {
 
 	// ALL ABOUT LOST
 	public function viewAllLostIDs() {
-        $sql = "SELECT lo.nid_names, lo.nid_number AS national_id, lo.nid_dob, lo.nid_sex, lo.issued_dist, lo.issued_sect, lo.nid_image, lo.lost_from, lo.lost_to, lo.lost_date, lo.reward, lo.loser_contact, lo.action_date FROM lost lo LEFT JOIN lost_check lc ON lc.nid_number=lo.nid_number WHERE lc.nid_number IS NULL ORDER BY nid_names ASC LIMIT 20";
+        $sql = "SELECT lo.nid_names, lo.nid_number AS national_id, lo.nid_dob, lo.nid_sex, lo.issued_dist, lo.issued_sect, lo.nid_image, lo.lost_from, lo.lost_to, lo.lost_date, lo.reward, lo.loser_contact, lo.action_date, lc.is_found, lc.is_received FROM lost lo LEFT JOIN lost_check lc ON lc.nid_number=lo.nid_number WHERE lc.nid_number IS NULL ORDER BY nid_names ASC LIMIT 20";
+        $stmt= $this->con->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function viewAllJoinedLostIDs() {
+        $sql = "SELECT lo.nid_names, lo.nid_number AS national_id, lo.nid_dob, lo.nid_sex, lo.issued_dist, lo.issued_sect, lo.nid_image, lo.lost_from, lo.lost_to, lo.lost_date, lo.reward, lo.loser_contact, lo.action_date, lc.is_found, lc.is_received FROM lost lo LEFT JOIN lost_check lc ON lc.nid_number=lo.nid_number ORDER BY nid_names ASC LIMIT 50";
         $stmt= $this->con->prepare($sql);
         $stmt->execute();
         return $stmt;
