@@ -10,7 +10,6 @@
             <div class="border-head">
               <h3>DASHBOARD</h3>
             </div>
-
             <div class="row">
               <!-- col-md-4 -->
               <div class="col-md-4 col-sm-4 mb">
@@ -42,7 +41,7 @@
                     <h5>More statistics</h5>
                   </div><hr>
                   <div class="row">
-                    <?php if(isset($_SESSION['admin_id'])) { ?>
+                    <?php if(isset($_SESSION['admin_id']) && isset($_SESSION['v_id'])) { ?>
                     <div class="col-md-12">
                       <p class="mt c-bolder">Total police stations</p>
                       <p><h1>(<?php echo $police->countPoliceStations(); ?>)</h1></p>
@@ -61,7 +60,7 @@
                   <script>
                     var secondData = [{
                         value: 70,
-                        color: "#EECCBB"
+                        color: "#000000"
                       },
                       {
                         value: 30,

@@ -11,6 +11,10 @@ $fun = new AppConfig;
 
 include '../data/IDAllData.php';
 $id_query = new IDAllData();
+
+include '../components/Login.php';
+$vlogin = new Login();
+
 ?>
 
 <!DOCTYPE html>
@@ -64,85 +68,34 @@ $id_query = new IDAllData();
       <!--logo end--> 
 
       <?php
-      if(!isset($_SESSION['admin_id']) || isset($_SESSION['admin_id'])) { 
+      if(isset($_SESSION['admin_id']) || isset($_SESSION['ps_id']) || isset($_SESSION['v_id'])) { 
       ?>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout c-transparent-like" href="../ids/search">Search for ID</a></li>
-          <li><a class="logout c-brown-box" href="../ids/search">Admin Login</a></li>
+          <li><a class="logout" href="../main/logout">Logout</a></li>
         </ul>
       </div>
+      <?php } else { ?>
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+          <li><a class="logout c-transparent-like" href="../main/login">Admin Login</a></li>
+          <li><a class="logout c-brown-box" href="../police/login">Police Login</a></li>
+        </ul>
+      </div>      
       <?php } ?>
     </header>
     <!--header end-->
 
-
-    <!-- MAIN SIDEBAR MENU -->
-    <!-- Sidebar start-->
-    <aside>
-      <div id="sidebar" class="nav-collapse ">
-        <!-- sidebar menu start-->
-        <ul class="sidebar-menu" id="nav-accordion">
-
-          <span class="c-title-sidebar">Visitors Page</span><hr>
-
-          <li>
-            <a href="../post/found">
-              <i class="fa fa-pencil"></i>
-              <span>Post Found ID </span>
-            </a>
-          </li>
-
-          <li>
-            <a href="../post/lost">
-              <i class="fa fa-pencil"></i>
-              <span>Post Lost ID </span>
-            </a>
-          </li><hr>
-
-          <li>
-            <a href="../ids/found">
-              <i class="fa fa-credit-card"></i>
-              <span>View Found IDs </span>
-            </a>
-          </li>
-
-          <li>
-            <a href="../ids/lost">
-              <i class="fa fa-question-circle"></i>
-              <span>View Lost IDs </span>
-            </a>
-          </li><hr>
-
-          <li>
-            <a class="c-bolder" href="../ids/search">
-              <i class="fa fa-search"></i>
-              <span>Search for ID</span>
-              </a>
-          </li>
-
-        </ul>
-        <!-- sidebar menu end-->
-      </div>
-    </aside>
-    <!-- Sidebar end-->
-
-
-
-
-    <!--main content start-->
-    <section id="main-content">
-      <section class="wrapper">
-        <div class="row">
+    <?php
+    include '../components/Sidebar.php';
+    ?>
           
-
-          <div class="col-lg-9 main-chart">
-
+          <div class="col-lg-12 main-chart">
             <?php
             if(isset($_GET['content']) && $_GET['content']=='home') {
             ?>
             <div class="border-head">
-              <h2 class="text-primary">Welcome &raquo;</h2><hr>
+              <h2 class="text-primary">National ID Lost MIS</h2><hr>
             </div>
             <?php } ?>
 
@@ -153,7 +106,12 @@ $id_query = new IDAllData();
 
               // Content chosen to be loaded on home page
               if(isset($_GET['content']) && $_GET['content']=='home') {
-                include '../components/ReadLostID.php';
+                include '../components/VisitorUser.php';
+              }
+
+              // Creation Component
+              if(isset($_GET['content']) && $_GET['content']=='reg_v') {
+                include '../components/VisitorUser.php';
               }
 
               // National ID Found Component
@@ -185,7 +143,6 @@ $id_query = new IDAllData();
               if(isset($_GET['content']) && $_GET['content']=='search_res') {
                 include '../components/SearchResult.php'; 
               }
-
             	?>
 
             </div>
@@ -194,17 +151,13 @@ $id_query = new IDAllData();
           <!-- /col-lg-9 END SECTION MIDDLE -->
 
           <!-- RIGHT SIDEBAR CONTENT -->
-          <?php
-            // Components Of National ID Found
-            include '../components/RightSide.php';
-          ?>
-
+          <?php /* RightSide Component excluded for @donnekt reason */ ?>
           
           <!-- /col-lg-3 -->
         </div>
         <!-- /row -->
       </section>
-    </section>
+    </section><br><br><br>
     <!--main content end-->
 
 

@@ -12,6 +12,9 @@ $id_query = new IDAllData();
 include '../data/PoliceData.php';
 $police = new PoliceData();
 
+include '../data/LoginData.php';
+$vlogin = new LoginData();
+
 
 include '../components/Header.php';
 
@@ -24,12 +27,25 @@ if(($_GET['inner_page']!='homepage')) {
 if(isset($_GET['inner_page']) && $_GET['inner_page']=='dashboard') {
 	include 'dashboard.php';
 } else if(isset($_GET['inner_page']) && $_GET['inner_page']=='logout') {
-	session_destroy();
-	echo "<script>window.location='../main/login'</script>";
+	if(isset($_SESSION['admin_id'])) {
+		session_destroy();
+		echo "<script>window.location='../main/login'</script>";
+	} else if(isset($_SESSION['ps_id'])) {
+		session_destroy();
+		echo "<script>window.location='../police/login'</script>";
+	} else {
+		session_destroy();
+		echo "<script>window.location='../main/home'</script>";	
+	}
+	
 } else if(isset($_GET['inner_page']) && $_GET['inner_page']=='create_police') {
 	include 'create-police.php';
 } else if(isset($_GET['inner_page']) && $_GET['inner_page']=='view_police') {
 	include 'view-police.php';
+} else if(isset($_GET['inner_page']) && $_GET['inner_page']=='view_users') {
+	include 'view-police.php';
+} else if(isset($_GET['inner_page']) && $_GET['inner_page']=='view_profile') {
+	include 'profile.php';
 } else if(isset($_GET['inner_page']) && $_GET['inner_page']=='report_lost') {
 	include 'report-lost.php';
 } else if(isset($_GET['inner_page']) && $_GET['inner_page']=='report_found') {
