@@ -26,7 +26,7 @@
                   $_POST['m_to'],
                   $lost_date,
                   $_POST['reward'],
-                  $_POST['loser_no']
+                  $_SESSION['v_id']
                 );
                 echo '</div>';
               }
@@ -85,7 +85,7 @@
                 </div>
 
                 <p class="c-centered-title">
-                  <b class="text-primary">Additional info</b>
+                  <b class="text-primary">Additional details</b>
                 </p>
                 <!-------------------------- Another side ---------------------------->
             
@@ -115,13 +115,6 @@
                   <label class="control-label col-md-6"><b>Reward money in frws</b> / Ibihembo biteganyijwe</label>
                   <div class="col-md-6">
                     <input type="number" name="reward" class="form-control" value="5000" required/>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="control-label col-md-6"><b>Contact Number</b> / Nimero wahamagaraho</label>
-                  <div class="col-md-6">
-                    <input type="text" name="loser_no" class="form-control" placeholder="0780000000" required/>
                   </div>
                 </div>
 

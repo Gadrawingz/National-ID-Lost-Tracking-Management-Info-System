@@ -14,7 +14,7 @@
                   <div class="message-header">
                     <h3 class="text-primary">
                       ID: <?php echo $result['national_id']; ?> 
-                      <span class="btn btn-danger">Not found yet</span>
+                      <span class="c-danger">Not found yet</span>
                     </h3>
                   </div>
                   <div class="row" style="color: black!important;">
@@ -48,7 +48,7 @@
 
                       <p class="c-bordered-top">
                         <span style="color: blue">
-                          <strong>Contact Number:</strong> <?php echo $result['loser_contact']; ?>
+                          <strong>Contact Info:</strong> <?php echo $result['account_tel']." (".$result['account_names'].")"; ?>
                         </span>
                       </p>
                     </div>
