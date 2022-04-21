@@ -66,6 +66,9 @@ $object = new Login();
           <div class="registration">
             <a class="font-size-17 underlined-bottom" href="../police/login">
               Police Station Login
+            </a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a class="font-size-17 text-success" href="../main/home">
+              <b>Back Home</b>
             </a>
           </div>
         </div>
@@ -100,6 +103,9 @@ $object = new Login();
           <div class="registration">
             <a class="font-size-17 underlined-bottom" href="../main/login">
               Admin Login
+            </a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a class="font-size-17 text-success" href="../main/home">
+              <b>Back Home</b>
             </a>
           </div>
         </div>

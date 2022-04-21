@@ -57,6 +57,63 @@
           <?php } ?>
 
 
+
+
+
+          <?php if(isset($_GET['page']) && $_GET['page']=='users') { ?>
+          <!-- Inside row defined above all of the app power @donnekt -->
+          <div class="col-lg-9">
+            <div class="content-panel">
+              <table class="table table-striped table-advance table-hover">
+                <h4><i class="fa fa-angle-right"></i> All Registered Users</h4>
+                <hr>
+                <thead>
+                  <tr>
+                    <th><i class="fa fa-group"></i> Names</th>
+                    <th><i class="fa fa-phone"></i> Telephone</th>
+                    <th><i class=" fa fa-calendar"></i> Date registered</th>
+                    <th><i class=" fa fa-check"></i> Status</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                <?php
+                  $num2 = 1;
+                  $user_stmt= $id_query->registeredVisitors();
+                  while($user_res= $user_stmt->FETCH(PDO::FETCH_ASSOC)) {
+                    $user_status = $user_res['status']=='1' ? "Active":"Inactive";
+                ?>
+                  <tr>
+                    <td>
+                      <a href="#"><?php echo $user_res['full_name']; ?></a>
+                    </td>
+                    <td><?php echo $user_res['telephone']; ?></td>
+                    <td><?php echo $user_res['created_at']; ?></td>
+                    <td>
+
+                      <span class="label label-<?php echo $user_res['status']=='1' ? "info":"danger";?> label-mini">
+                        <?php echo $user_status; ?> 
+                      </span>
+                    </td>
+                    <td>
+                      <?php if($user_res['status']=='1') { ?>
+                      <a href="../disable/<?php echo $user_res['user_id']; ?>" onclick="return confirm('Do U want to disable this record?')" class="btn btn-danger btn-sm">Disable</i></a>
+                      <?php } else { ?>
+                      <a href="../enable/<?php echo $user_res['user_id']; ?>" onclick="return confirm('Do U want to enable this record?')" class="btn btn-primary btn-sm">Enable</i></a>
+                      <?php } ?>
+                    </td>
+                  </tr>
+                <?php } ?>
+         
+                </tbody>
+              </table>
+            </div>
+            <!-- /form-panel -->
+          </div>
+          <!-- /col-lg-9 END SECTION MIDDLE -->
+          <?php } ?>
+
+
           <?php if(isset($_GET['page']) && $_GET['page']=='upd') { ?>
           <div class="col-lg-9">
             <div class="form-panel">
@@ -138,7 +195,7 @@
           </div>
           <?php }
 
-          // DEL
+          // DEL @gadrawingz
           if(isset($_GET['did'])) { 
             if($police->deletePoliceStation($_GET['did'])) {
               echo "<script>alert('REMOVED SUCCESSFULLY!')</script>";

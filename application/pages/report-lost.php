@@ -29,7 +29,7 @@
                 <tbody>
                 <?php
                   $num = 1;
-                  $stmt= $id_query->viewAllJoinedLostIDs();
+                  $stmt= $id_query->viewAllMergedLostIDs();
                   while($result= $stmt->FETCH(PDO::FETCH_ASSOC)) {
                 ?>
                   <tr>
