@@ -22,6 +22,7 @@ class Login{
 		}
 	}
 
+	// Under the mind of @gadrawingz
 	public function policeStationLogin($username, $password) {
 		error_reporting(0);
 		$call = new LoginData;
@@ -35,6 +36,23 @@ class Login{
             echo "<script>window.location='../main/dashboard'</script>";
         } else {	
 			echo "<script>window.location='../log_err_p/invalid'</script>";
+		}
+	}
+
+
+	public function visitorLogin($telephone, $password) {
+		error_reporting(0);
+		$call = new LoginData;
+		$stmt = $call->doVisitorLogin($telephone, $password);
+		$row1  = $stmt->FETCH(PDO::FETCH_ASSOC);
+
+		if(($telephone==$row1['telephone']) && ($password==$row1['password'])) {
+			$_SESSION['v_id']		= $row1['user_id'];
+            $_SESSION['telephone'] 	= $row1['telephone'];
+            $_SESSION['v_names'] 	= $row1['full_name'];
+            echo "<script>window.location='../main/dashboard'</script>";
+        } else {
+        	echo '<div class="bg-danger text-danger warning-box">Wrong Credentials</div>';	
 		}
 	}
 

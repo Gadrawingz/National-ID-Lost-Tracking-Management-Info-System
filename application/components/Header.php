@@ -76,23 +76,16 @@ $fun = new AppConfig;
       
 
 
-      <?php if(isset($_SESSION['admin_id']) || isset($_SESSION['ps_id'])) { ?>
+      <?php if(isset($_SESSION['admin_id']) || isset($_SESSION['ps_id']) || isset($_SESSION['v_id'])) { ?>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
           <li><a class="logout" href="../main/logout">Logout</a></li>
         </ul>
       </div>
 
-      <?php
-      } else {
+      <?php } else {
         // AVOID DIRECT ACCESS PAGE WITHOUT PERMISSION Find @donnekt!
-        echo "<script>window.location='../main/login'</script>";
-      ?>
-      <div class="top-menu">
-        <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="#">Post Found ID</a></li>
-        </ul>
-      </div>
-      <?php } ?>
+        echo "<script>window.location='../main/home'</script>";
+      } ?>
     </header>
     <!--header end-->

@@ -16,9 +16,7 @@
                   $_POST['issued_sect'],
                   $_FILES['id_image'],
                   $_POST['u_location'],
-                  $_POST['firstname'],
-                  $_POST['lastname'],
-                  $_POST['finder_no']
+                  $_SESSION['v_id']
                 );
                 echo '</div>';
               }
@@ -76,37 +74,12 @@
                   </div>
                 </div>
 
-                <p class="c-centered-title">
-                  <b>Your personal info</b>
-                </p>
-                <!-------------------------- Another side ---------------------------->
-              
-                <div class="form-group">
+                <div class="form-group" >
                   <label class="control-label col-md-6">
-                    Location where you found Lost ID
+                    <span class="text-primary"><strong>Location where you found Lost ID</span></strong>
                   </label>
                   <div class="col-md-6">
-                    <input type="text" name="u_location" class="form-control" placeholder="..." required/>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="control-label col-md-6">
-                    Your names (Firstname & Lastname)
-                  </label>
-                  <div class="col-md-6">
-                    <div class="input-group input-large">
-                      <input type="text" class="form-control" name="firstname" placeholder="Firstname" required/>
-                      <span class="input-group-addon">-</span>
-                      <input type="text" class="form-control" name="lastname" placeholder="Lastname" required/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="control-label col-md-6"><b>Contact Number</b> / Nimero igendanwa</label>
-                  <div class="col-md-6">
-                    <input type="text" name="finder_no" class="form-control" placeholder="078..." required/>
+                    <input type="text" name="u_location" class="form-control" placeholder="Ex: Huye - Tumba" required/>
                   </div>
                 </div>
 
